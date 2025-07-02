@@ -56,18 +56,7 @@
             });
         });
 
-        // Search functionality
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                const searchTerm = searchInput.value.trim();
-                if (searchTerm) {
-                    alert(`Searching for: "${searchTerm}"`);
-                    // Here you would implement actual search functionality
-                    searchInput.value = '';
-                }
-            }
-        });
-
+      
         // Add loading animation delay for demo
         window.addEventListener('load', () => {
             document.body.style.opacity = '1';
