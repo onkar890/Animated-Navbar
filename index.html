@@ -1,68 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Navigation Bar</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rony Fantasy Studio — build consistent cinematic fantasy scenes.">
+  <title>Rony Fantasy Studio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">Navbar</a>
-            
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-                
-                <li class="search-container">
-                    <input type="text" class="search-input" id="search-input" placeholder="Search...">
-                    <button class="search-btn" id="search-btn">🔍</button>
-                </li>
-            </ul>
-            
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">✦</span><span>RONY</span><small>FANTASY STUDIO</small></div>
+    <nav>
+      <a href="#studio">Studio</a>
+      <a href="#bible">World Bible</a>
+      <a href="#prompt">Prompt</a>
     </nav>
+    <button class="ghost-btn" id="resetBtn">Reset</button>
+  </header>
 
-    <!-- Main Content -->
-    <main class="main-content" id="home">
-        <section class="hero-section">
-            <h1>Animated Navigation Bar</h1>
-            <p>Experience smooth animations, responsive design, and modern UI interactions. This navigation bar adapts to all screen sizes and provides an engaging user experience.</p>
-            <a href="#" class="cta-button">Get Started</a>
-        </section>
-    </main>
-
-    <!-- Additional Content for Scroll Demo -->
-    <section class="content-section" id="about">
-        <h2>About Section</h2>
-        <p>This section demonstrates the sticky navigation behavior. As you scroll, the navigation bar remains fixed at the top of the page, providing easy access to all menu items. The design includes smooth hover effects, responsive hamburger menu for mobile devices, and an expandable search functionality.</p>
+  <main>
+    <section class="hero" id="studio">
+      <div>
+        <p class="eyebrow">CINEMATIC WORLD BUILDER</p>
+        <h1>Build scenes from<br><em>Rony's world.</em></h1>
+        <p class="lead">Create consistent image-to-video prompts without rewriting the fantasy world's rules every time.</p>
+        <a class="primary-btn" href="#prompt">Create a scene <span>→</span></a>
+      </div>
+      <div class="hero-card">
+        <div class="mist"></div>
+        <div class="forest-orb">✦</div>
+        <p>ANCIENT FOREST</p>
+        <span>Rony Universe · Canon</span>
+      </div>
     </section>
 
-    <section class="content-section" id="services">
-        <h2>Services Section</h2>
-        <p>The navigation bar features CSS3 animations and transitions that enhance user experience. From the initial slide-down animation to the hover effects on menu items, every interaction is designed to feel smooth and responsive. The search bar expands elegantly when activated, and the hamburger menu transforms smoothly on mobile devices.</p>
+    <section class="section" id="bible">
+      <div class="section-heading"><p class="eyebrow">CANON</p><h2>World Bible</h2><p>These rules stay locked for continuity.</p></div>
+      <div class="cards">
+        <article><span>01</span><h3>Environment</h3><p>Ancient gigantic oaks and redwoods. Timeless scale, dense natural detail.</p></article>
+        <article><span>02</span><h3>Flora</h3><p>Subtly alien: glowing fungi, iridescent leaves and strange hanging vines.</p></article>
+        <article><span>03</span><h3>Creatures</h3><p>Moss-covered, antlered Woodland Spirits that naturally blend with trees.</p></article>
+        <article><span>04</span><h3>Cinematography</h3><p>High-fidelity photorealistic modern cinematic film. Believable before magical.</p></article>
+      </div>
     </section>
 
-    <section class="content-section" id="portfolio">
-        <h2>Portfolio Section</h2>
-        <p>Built with modern web technologies including HTML5, CSS3, and JavaScript, this navigation bar demonstrates best practices in responsive web design. The code is clean, well-structured, and easily customizable for any project. The glassmorphism effect and gradient backgrounds create a contemporary aesthetic.</p>
+    <section class="section builder" id="prompt">
+      <div class="section-heading"><p class="eyebrow">SCENE BUILDER</p><h2>Create the next shot</h2><p>The canon is automatically included in your prompt.</p></div>
+      <div class="builder-grid">
+        <div class="panel form-panel">
+          <label>Scene description
+            <textarea id="scene" rows="6" placeholder="Example: Rony discovers an ancient stone bridge hidden beneath the roots..."></textarea>
+          </label>
+          <div class="two-col">
+            <label>Mood
+              <select id="mood">
+                <option>Mysterious</option><option>Wonder</option><option>Dark and tense</option><option>Peaceful</option><option>Epic</option><option>Emotional</option>
+              </select>
+            </label>
+            <label>Shot
+              <select id="shot">
+                <option>Wide cinematic establishing shot</option><option>Medium character shot</option><option>Close-up</option><option>Over-the-shoulder</option><option>Low-angle epic shot</option><option>Slow aerial / drone shot</option>
+              </select>
+            </label>
+          </div>
+          <label>Movement
+            <select id="movement">
+              <option>Slow natural camera movement</option><option>Locked-off camera</option><option>Slow push-in</option><option>Slow tracking shot</option><option>Gentle crane upward</option>
+            </select>
+          </label>
+          <label class="check"><input type="checkbox" id="wind" checked> Natural wind only — grass, leaves, vines and fur move subtly</label>
+          <button class="primary-btn full" id="generateBtn">Generate prompt <span>✦</span></button>
+        </div>
+        <div class="panel output-panel">
+          <div class="output-head"><span>READY PROMPT</span><button id="copyBtn">Copy</button></div>
+          <pre id="output">Describe a scene on the left, then generate a continuity-safe prompt.</pre>
+          <div class="api-note"><strong>Video generation:</strong> this frontend prepares the prompt. Connect your preferred image/video API through a backend before adding API keys.</div>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <section class="content-section" id="contact">
-        <h2>Contact Section</h2>
-        <p>Ready to implement this navigation bar in your project? The code is modular and can be easily integrated into any website. All animations are optimized for performance, and the responsive design ensures compatibility across all devices and screen sizes.</p>
-    </section>
-
+  <footer>RONY FANTASY STUDIO · VISUAL STORYTELLING WITHOUT DIALOGUE</footer>
   <script src="script.js"></script>
 </body>
 </html>
