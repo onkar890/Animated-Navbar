@@ -1,71 +1,28 @@
-        // DOM Elements
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-        const navbar = document.getElementById('navbar');
-        const searchBtn = document.getElementById('search-btn');
-        const searchInput = document.getElementById('search-input');
-        const navLinks = document.querySelectorAll('.nav-link');
+const CANON={environment:"Ancient gigantic oaks and redwoods with timeless scale.",flora:"Subtly alien flora: glowing fungi, iridescent leaves, strange hanging vines.",creatures:"Moss-covered, antlered Woodland Spirits that blend naturally with trees.",style:"High-fidelity photorealistic modern cinematic film; crisp, physically believable detail.",story:"Rony is the recurring main character. Visual storytelling only; no dialogue or talking-head presentation."};
+const $=id=>document.getElementById(id);
+function buildPrompt(){const scene=$("scene").value.trim();if(!scene){$("output").textContent="Please describe the scene first.";return}const wind=$("wind").checked?"Natural wind only: subtle movement in grass, leaves, hanging vines and creature fur; no unnecessary character or animal movement.":"Minimal natural movement only.";const prompt=`RONY FANTASY UNIVERSE — SCENE PROMPT
 
-        // Toggle mobile menu
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
+SCENE:
+${scene}
 
-        // Close mobile menu when clicking on nav links
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
+CINEMATIC DIRECTION:
+${$("shot").value}. ${$("movement").value}. Mood: ${$("mood").value}. Photorealistic modern cinema, realistic materials, natural depth of field, physically believable lighting, detailed atmosphere, cinematic composition.
 
-        // Toggle search bar (simplified for better UX)
-        searchInput.addEventListener('focus', () => {
-            searchInput.style.borderColor = '#667eea';
-        });
+WORLD CONTINUITY:
+- Environment: ${CANON.environment}
+- Flora: ${CANON.flora}
+- Creatures: ${CANON.creatures}
+- Visual style: ${CANON.style}
+- Character/story: ${CANON.story}
 
-        searchInput.addEventListener('blur', () => {
-            searchInput.style.borderColor = '#ddd';
-        });
+MOTION:
+${wind}
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+NEGATIVE / CONSISTENCY:
+No cartoon look, no painterly texture, no random costume changes, no extra main characters, no modern objects, no futuristic technology, no exaggerated neon fantasy, no dialogue, no lip-sync, no sudden camera shake, no unnecessary creature movement.
 
-        // Smooth scrolling for anchor links
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                const href = link.getAttribute('href');
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        const offsetTop = target.offsetTop - 80;
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
-
-      
-        // Add loading animation delay for demo
-        window.addEventListener('load', () => {
-            document.body.style.opacity = '1';
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav-container') && navMenu.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
+Maintain exact visual continuity with previous Rony scenes.`;$("output").textContent=prompt;localStorage.setItem("ronyLastScene",scene)}
+$("generateBtn").addEventListener("click",buildPrompt);
+$("copyBtn").addEventListener("click",async()=>{await navigator.clipboard.writeText($("output").textContent);$("copyBtn").textContent="Copied";setTimeout(()=>$("copyBtn").textContent="Copy",1200)});
+$("resetBtn").addEventListener("click",()=>{localStorage.removeItem("ronyLastScene");$("scene").value="";$("output").textContent="Describe a scene on the left, then generate a continuity-safe prompt."});
+$("scene").value=localStorage.getItem("ronyLastScene")||"";
